@@ -1,0 +1,77 @@
+(lang dune 3.10)
+(name lambda_calculus)
+(sections (lib .) (libexec .))
+(files
+ (lib
+  (META
+   ast.ml
+   dune-package
+   lambda_calculus.a
+   lambda_calculus.cma
+   lambda_calculus.cmi
+   lambda_calculus.cmt
+   lambda_calculus.cmx
+   lambda_calculus.cmxa
+   lambda_calculus.ml
+   lambda_calculus__Ast.cmi
+   lambda_calculus__Ast.cmt
+   lambda_calculus__Ast.cmx
+   lambda_calculus__Lexer.cmi
+   lambda_calculus__Lexer.cmt
+   lambda_calculus__Lexer.cmx
+   lambda_calculus__Main.cmi
+   lambda_calculus__Main.cmt
+   lambda_calculus__Main.cmx
+   lambda_calculus__Parser.cmi
+   lambda_calculus__Parser.cmt
+   lambda_calculus__Parser.cmti
+   lambda_calculus__Parser.cmx
+   lambda_calculus__Reducer.cmi
+   lambda_calculus__Reducer.cmt
+   lambda_calculus__Reducer.cmx
+   lexer.ml
+   main.ml
+   opam
+   parser.ml
+   parser.mli
+   reducer.ml))
+ (libexec (lambda_calculus.cmxs)))
+(library
+ (name lambda_calculus)
+ (kind normal)
+ (archives (byte lambda_calculus.cma) (native lambda_calculus.cmxa))
+ (plugins (byte lambda_calculus.cma) (native lambda_calculus.cmxs))
+ (native_archives lambda_calculus.a)
+ (main_module_name Lambda_calculus)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name lambda_calculus)
+     (visibility public)
+     (kind alias)
+     (source (path Lambda_calculus) (impl (path lambda_calculus.ml-gen))))
+    (name Lambda_calculus)
+    (modules
+     (module
+      (obj_name lambda_calculus__Ast)
+      (visibility public)
+      (source (path Ast) (impl (path ast.ml))))
+     (module
+      (obj_name lambda_calculus__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path lexer.ml))))
+     (module
+      (obj_name lambda_calculus__Main)
+      (visibility public)
+      (source (path Main) (impl (path main.ml))))
+     (module
+      (obj_name lambda_calculus__Parser)
+      (visibility public)
+      (source (path Parser) (intf (path parser.mli)) (impl (path parser.ml))))
+     (module
+      (obj_name lambda_calculus__Reducer)
+      (visibility public)
+      (source (path Reducer) (impl (path reducer.ml))))))
+   (wrapped true))))

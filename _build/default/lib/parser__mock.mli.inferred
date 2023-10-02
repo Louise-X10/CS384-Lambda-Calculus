@@ -1,0 +1,16 @@
+type token =
+    Var of string
+  | Semicolon
+  | RParen
+  | Lambda
+  | LParen
+  | Equal
+  | EOF
+  | Dot
+val menhir_begin_marker : int
+val xv_term : Ast.lc_expr
+val xv_start : Ast.lc_expr
+val xv_program : Ast.lc_expr
+val xv_base : Ast.lc_expr
+val xv_application : Ast.lc_expr
+val menhir_end_marker : int
