@@ -21,14 +21,14 @@ open Ast
 /* 
 <program> ::= <term> | <binding> <program>
 <binding> ::= $id = <term> ;
-<term> ::= & $id . <application> | <application>
+<term> ::= & $id . <term> | <application>
 <application> ::= <application> <base> | <base>
 <base> ::= $id | ( <term> )
 */
 
 /* 
 <program> ::= <term> | $id = <term> ; <program> --> (&id. <program>) <term>
-<term> ::= & $id . <application> | <application>
+<term> ::= & $id . <term> | <application>
 <application> ::= <application> <base> | <base>
 <base> ::= $id | ( <term> )
  */
